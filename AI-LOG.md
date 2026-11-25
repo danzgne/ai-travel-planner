@@ -13,18 +13,18 @@ One entry per task where an assistant did part of the work, written as we go.
 Tool: Claude Code.
 Asked for: read the PA#2 rubric, the AI Travel Planner brief and the IA#3 contract, and turn them into an ordered plan.
 Kept: the order. Protect `main` first, then send every change through a PR, so the red check and the deliberate contract break happen in real history.
-Changed: TODO(team)
+Changed: nothing. We followed its phases in order.
 Rejected: reusing our PA#1 repository. It proposed a different project, so we started a clean one.
-By hand: TODO(team)
+By hand: none of the plan text. We gave it the IA#3 `CONTRACT.md` and the session 3 slides (4 to 6) it was missing, and picked `POST /plans/{planId}/save` from the endpoints it shortlisted.
 
 ## 2026-11-25: repository scaffold, checks and CI
 
 Tool: Claude Code.
 Asked for: an npm workspaces repo with one command each for lint, format check, type check and tests, and a CI that runs the same commands.
 Kept: Express 5 in `apps/api`, Vitest + supertest, ESLint + Prettier + `tsc`, one CI job per check plus a gitleaks scan of the whole history. Also the TypeScript 6.0 pin: the latest TypeScript is 7, which typescript-eslint 8 does not support.
-Changed: TODO(team)
+Changed: nothing.
 Rejected: a Next.js full-stack app. We want a separate API so model keys stay in the backend.
-By hand: TODO(team)
+By hand: none of the code. We chose the stack from the three it offered and where the repo lives (`danzgne/ai-travel-planner`).
 
 ## 2026-11-25: branch protection on main
 
@@ -39,7 +39,7 @@ By hand: the screenshots.
 
 Tool: Claude Code.
 Asked for: a first draft of `AGENTS.md`, the permission tiers in `.claude/settings.json`, `.env.example` and the README section on the model key.
-Kept: TODO(team)
-Changed: TODO(team)
-Rejected: TODO(team)
-By hand: TODO(team), including setting the $5 spend limit in the Claude Console.
+Kept: all of it as drafted: `AGENTS.md`, `CLAUDE.md` as a one-line `@AGENTS.md` import, the allow / ask / deny lists in `.claude/settings.json`, `.env.example` and the README section.
+Changed: nothing.
+Rejected: our own idea of making `CLAUDE.md` a symlink to `AGENTS.md`. Git on Windows checks a symlink out as a one-line text file, so we kept the import.
+By hand: the choices it asked us for (Anthropic Haiku, a $5 cap, Claude Code and Codex as our tools), and setting the $5 spend limit in the Claude Console.
