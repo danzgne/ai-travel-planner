@@ -43,3 +43,21 @@ Kept: all of it as drafted: `AGENTS.md`, `CLAUDE.md` as a one-line `@AGENTS.md` 
 Changed: nothing.
 Rejected: our own idea of making `CLAUDE.md` a symlink to `AGENTS.md`. Git on Windows checks a symlink out as a one-line text file, so we kept the import.
 By hand: the choices it asked us for (Anthropic Haiku, a $5 cap, Claude Code and Codex as our tools), and setting the $5 spend limit in the Claude Console.
+
+## 2026-11-26: write the plan-save contract tests
+
+Tool: Codex.
+Asked for: prepare the injectable app and write the contract tests first for PA2 step 1.
+Kept: Supertest assertions for all problem types, access rules, check order, replay, concurrency, and plan validation.
+Changed: ESLint caught unsafe assignments from Vitest's untyped asymmetric matchers. Codex gave the matcher values type `unknown` before the test commit and kept the assertions.
+Rejected: using a later request with a different key to prove a failed save was not cached. The test now retries the same plan and revision after the plan reaches that revision.
+Evidence: [red CI run](https://github.com/danzgne/ai-travel-planner/actions/runs/45680538157) and [blocked merge](docs/pa2/plans-save-blocked.webp).
+
+## 2026-11-26: implement the plan-save endpoint
+
+Tool: Codex.
+Asked for: implement the save contract for PA2 step 2, then record the workflow.
+Kept: route-local body parsing, integer pricing, plan validation, and saved-response replay.
+Changed: ESLint caught the first raw-body adapter rejecting with an arbitrary callback value. Codex kept existing errors and converted other failures to an Error before the implementation commit.
+Rejected: keeping the replay snapshot aliased to the current in-memory plan. The store copies the successful response when it records the save.
+Evidence: [implementation commit](https://github.com/danzgne/ai-travel-planner/commit/5ffcaf0adc7c437a36f1060f7fd3f017a3a94e40) and [workflow record](docs/pa2/plans-save-workflow.md).
