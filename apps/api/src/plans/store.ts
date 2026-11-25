@@ -20,7 +20,7 @@ export function createPlanStore(
     },
     save(plan) {
       const saved = new Map(entries.get(plan.id)?.saved);
-      saved.set(plan.revision, plan);
+      saved.set(plan.revision, structuredClone(plan));
       entries.set(plan.id, { plan, saved });
     },
   };
