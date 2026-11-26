@@ -61,11 +61,6 @@ export function savePlans(deps: AppDeps) {
       });
     }
 
-    const replay = store.getSaved(id, revision);
-    if (replay) {
-      res.set("Idempotent-Replayed", "true").json(replay);
-      return;
-    }
     if (!store.tryLock(id)) {
       return sendProblem(res, "save-in-progress", "A save is already processing this plan.");
     }
