@@ -21,7 +21,7 @@ By hand: none of the plan text. We gave it the IA#3 `CONTRACT.md` and the sessio
 
 Tool: Claude Code.
 Asked for: an npm workspaces repo with one command each for lint, format check, type check and tests, and a CI that runs the same commands.
-Kept: Express 5 in `apps/api`, Vitest + supertest, ESLint + Prettier + `tsc`, one CI job per check plus a gitleaks scan of the whole history. Also the TypeScript 6.0 pin: the latest TypeScript is 7, which typescript-eslint 8 does not support.
+Kept: Express 5 in `apps/api`, Vitest + supertest, ESLint + Prettier + `tsc`, one CI job per check plus a gitleaks scan of each push and pull request. Also the TypeScript 6.0 pin: the latest TypeScript is 7, which typescript-eslint 8 does not support.
 Changed: nothing.
 Rejected: a Next.js full-stack app. We want a separate API so model keys stay in the backend.
 By hand: none of the code. We chose the stack from the three it offered and where the repo lives (`danzgne/ai-travel-planner`).
@@ -107,3 +107,12 @@ Kept: its review of steps 1 to 4, which found that the `AGENTS.md` incident rule
 Changed: nothing in `PA2.md`.
 Rejected: nothing.
 By hand: the team list, and the final marks in `SELF_ASSESSMENT_REPORT.md`.
+
+## 2026-11-26: correct the gitleaks claim and fix Windows line endings
+
+Tool: Claude Code.
+Asked for: correct the README and AI-LOG lines about the secret scan, and make a fresh clone on Windows pass `format:check`.
+Kept: the corrected wording. `gitleaks-action` scans only the new commits of each push or pull request, not the whole history as the README, this log and our first self-assessment draft said.
+Changed: nothing.
+Rejected: nothing.
+By hand: deciding to fix both before tagging.
