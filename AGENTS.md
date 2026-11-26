@@ -22,9 +22,7 @@ Run from the repo root. CI runs exactly these, and all four must pass before a t
 - Errors are RFC 9457 problem details (`application/problem+json`). Clients branch on `type`, never on `title` or `detail`.
 - Money is an integer number of dong (`...Vnd`), computed by code only.
 - Relative imports end in `.ts`. No enums, namespaces or parameter properties (`erasableSyntaxOnly`).
-- Clone saved responses when storing idempotent replays—never alias the live in-memory plan—and convert non-`Error` middleware callback rejections to `Error` (AI-LOG 2026-11-26, "implement the plan-save endpoint").
-- Type Vitest asymmetric matchers as `unknown` for type-aware ESLint, and prove a failed save is uncached by retrying the same `(planId, revision)` key (AI-LOG 2026-11-26, "write the plan-save contract tests").
-- Keep `CLAUDE.md` as an `@AGENTS.md` import rather than a symlink; Git on Windows checks symlinks out as plain text (AI-LOG 2026-11-25, "rules file, permissions and secrets").
+- `CLAUDE.md` stays an `@AGENTS.md` import. Git on Windows checks symlinks out as plain text (AI-LOG 2026-11-25, "rules file, permissions and secrets").
 - Commits are `operation: content` (feat, fix, refactor, test, docs, chore). Every change reaches `main` through a PR with green checks.
 
 ## Never
@@ -34,6 +32,8 @@ Run from the repo root. CI runs exactly these, and all four must pass before a t
 - Edit a test, the eval data or a validator rule to make a check pass. If one looks wrong, stop and say why.
 - Send names or email addresses to a model. Only places and interests.
 - Make a CI step unable to fail (`|| true`, `continue-on-error`, skipped tests).
+- Store a replay that points at the live plan. Copy the response when recording the save (AI-LOG 2026-11-26, "implement the plan-save endpoint").
+- Prove a failed save is uncached with a different key. Retry the same `(planId, revision)` (AI-LOG 2026-11-26, "write the plan-save contract tests").
 
 ## Permissions
 
