@@ -80,3 +80,12 @@ Kept: three incident-backed rules under `Conventions`—cloning stored replay sn
 Changed: combined the replay-cloning and middleware-error lessons from the same implementation entry into one line to keep `AGENTS.md` short.
 Rejected: adding a Windows `core.autocrlf` formatting note to `AGENTS.md`; kept it in `AI-LOG.md` only since it is a local Git setting rather than a codebase rule.
 By hand: selected which real incidents to promote, approved editing `AGENTS.md`, and authorized committing and merging the PR under `ThangTo`.
+
+## 2026-11-26: rewrite the incident rules in AGENTS.md by hand
+
+Tool: none for the text. Claude Code only committed it and opened the PR.
+Asked for: nothing. An assistant had drafted the three rules added in PR #6, so we rewrote them ourselves.
+Kept: the two real incidents (a stored replay that pointed at the live plan, and a test that proved "not cached" with a different key) and the note on keeping `CLAUDE.md` as an import.
+Changed: moved the two incident rules under Never, cut each to one sentence, and dropped the ESLint details (non-`Error` rejections, untyped Vitest matchers).
+Rejected: nothing.
+By hand: the whole `AGENTS.md` change in commit "docs: rewrite the incident rules in AGENTS.md by hand".
