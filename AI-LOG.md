@@ -61,3 +61,22 @@ Kept: route-local body parsing, integer pricing, plan validation, and saved-resp
 Changed: ESLint caught the first raw-body adapter rejecting with an arbitrary callback value. Codex kept existing errors and converted other failures to an Error before the implementation commit.
 Rejected: keeping the replay snapshot aliased to the current in-memory plan. The store copies the successful response when it records the save.
 Evidence: [implementation commit](https://github.com/danzgne/ai-travel-planner/commit/5ffcaf0adc7c437a36f1060f7fd3f017a3a94e40) and [workflow record](docs/pa2/plans-save-workflow.md).
+
+## 2026-11-26: deliberate contract break to verify CI gate
+
+Tool: Antigravity (Gemini).
+Asked for: break one contract rule in code only on branch `demo/contract-break`, open a PR so CI catches it on `test`, comment with the failing test, and close without merging (PA2 step 3).
+Kept: deleting only the 5-line `store.getSaved(id, revision)` replay lookup in `apps/api/src/plans/save.ts` so `lint`, `format`, `typecheck`, and `secrets` stay green while `POST /v1/plans/{planId}/save > replays the original successful body before and after an edit` fails.
+Changed: on Windows (`core.autocrlf=true`), `npm run format:check` flagged all 24 checked-out files for CRLF line endings; instead of reformatting unrelated files, we checked `save.ts` directly with Prettier (`--end-of-line auto`) and kept the commit scoped to the 5-line deletion so Linux CI `format` passed.
+Rejected: running `npm run format` across the workspace or deleting the `demo/contract-break` branch after closing the PR, so the red commit and PR remain easy for graders to inspect.
+By hand: reviewed the diff and local failure output, and approved the commit, push, and PR creation.
+Evidence: [PR #5 (closed)](https://github.com/danzgne/ai-travel-planner/pull/5), [commit 61d9221](https://github.com/danzgne/ai-travel-planner/commit/61d92217170e306da2187acda00a295fc441bf37), and [red CI run](https://github.com/danzgne/ai-travel-planner/actions/runs/45750788014).
+
+## 2026-11-26: update AGENTS.md with rules from real incidents
+
+Tool: Antigravity (Gemini).
+Asked for: turn real incidents from earlier AI-LOG entries into concise rules in `AGENTS.md` for PA2 step 4, update `AI-LOG.md`, and merge through a PR.
+Kept: three incident-backed rules under `Conventions`—cloning stored replay snapshots and normalizing non-`Error` middleware rejections (`2026-11-26: implement the plan-save endpoint`), typing Vitest asymmetric matchers as `unknown` and retrying the same `(planId, revision)` key (`2026-11-26: write the plan-save contract tests`), and keeping `CLAUDE.md` as an `@AGENTS.md` import on Windows (`2026-11-25: rules file, permissions and secrets`).
+Changed: combined the replay-cloning and middleware-error lessons from the same implementation entry into one line to keep `AGENTS.md` short.
+Rejected: adding a Windows `core.autocrlf` formatting note to `AGENTS.md`; kept it in `AI-LOG.md` only since it is a local Git setting rather than a codebase rule.
+By hand: selected which real incidents to promote, approved editing `AGENTS.md`, and authorized committing and merging the PR under `ThangTo`.
