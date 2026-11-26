@@ -44,6 +44,15 @@ Changed: nothing.
 Rejected: our own idea of making `CLAUDE.md` a symlink to `AGENTS.md`. Git on Windows checks a symlink out as a one-line text file, so we kept the import.
 By hand: the choices it asked us for (Anthropic Haiku, a $5 cap, Claude Code and Codex as our tools), and setting the $5 spend limit in the Claude Console.
 
+## 2026-11-25: contract for POST /v1/plans/{planId}/save
+
+Tool: Claude Code.
+Asked for: the contract of one endpoint in `docs/contract/`, with the sections of the IA#3 `CONTRACT.md` plus who may call it.
+Kept: all of it as drafted: author-only save (404 for anyone who cannot see the plan, 403 for a member who can), idempotency keyed on (`planId`, `revision`) with `Idempotent-Replayed`, the ten validator codes and the ten problem types.
+Changed: nothing.
+Rejected: `PUT /groups/{groupId}/members/{userId}/spending-cap`, the smaller endpoint it offered as a fallback.
+By hand: choosing the endpoint, and reviewing and merging PR #2.
+
 ## 2026-11-26: write the plan-save contract tests
 
 Tool: Codex.
@@ -89,3 +98,12 @@ Kept: the two real incidents (a stored replay that pointed at the live plan, and
 Changed: moved the two incident rules under Never, cut each to one sentence, and dropped the ESLint details (non-`Error` rejections, untyped Vitest matchers).
 Rejected: nothing.
 By hand: the whole `AGENTS.md` change in commit "docs: rewrite the incident rules in AGENTS.md by hand".
+
+## 2026-11-26: PA2.md and the self-assessment
+
+Tool: Claude Code.
+Asked for: check steps 1 to 4 against the rubric, then draft `PA2.md` with the evidence links and a first draft of `SELF_ASSESSMENT_REPORT.md`.
+Kept: its review of steps 1 to 4, which found that the `AGENTS.md` incident rules were still assistant-written (fixed by hand in PR #7), and `PA2.md` as drafted after it checked that every file and GitHub link resolves.
+Changed: nothing in `PA2.md`.
+Rejected: nothing.
+By hand: the team list, and the final marks in `SELF_ASSESSMENT_REPORT.md`.
