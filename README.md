@@ -30,13 +30,13 @@ Each check is one command. CI (`.github/workflows/ci.yml`) runs these exact comm
 | Type check   | `npm run typecheck`    |
 | Tests        | `npm test`             |
 
-`npm run format` rewrites files to match the formatter. CI also scans the full git history for secrets with gitleaks.
+`npm run format` rewrites files to match the formatter. CI also runs gitleaks on the new commits of every push and pull request to catch secrets.
 
 ## Model and secrets
 
 - The agent uses Anthropic `claude-haiku-5-5`, called only from `apps/api`. The key never reaches the browser.
 - The Anthropic API key belongs to its own Claude Console workspace with a spend limit of **$5 per month**, so a runaway loop cannot cost more than that.
-- Copy `.env.example` to `.env` and fill it in. `.env` is git-ignored, and CI scans the whole git history for secrets.
+- Copy `.env.example` to `.env` and fill it in. `.env` is git-ignored, and CI runs gitleaks on every push and pull request.
 
 ## Run the API
 
